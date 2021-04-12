@@ -48,15 +48,15 @@ class Country {
   int todayRecovered;
   int active;
   int critical;
-  int casesPerOneMillion;
-  int deathsPerOneMillion;
+  double casesPerOneMillion;
+  double deathsPerOneMillion;
   int tests;
-  int testsPerOneMillion;
+  double testsPerOneMillion;
   int population;
   String continent;
-  int oneCasePerPeople;
-  int oneDeathPerPeople;
-  int oneTestPerPeople;
+  double oneCasePerPeople;
+  double oneDeathPerPeople;
+  double oneTestPerPeople;
   double activePerOneMillion;
   double recoveredPerOneMillion;
   double criticalPerOneMillion;
@@ -73,18 +73,18 @@ class Country {
         todayRecovered: json["todayRecovered"],
         active: json["active"],
         critical: json["critical"],
-        casesPerOneMillion: json["casesPerOneMillion"],
-        deathsPerOneMillion: json["deathsPerOneMillion"],
+        casesPerOneMillion: json["casesPerOneMillion"].toDouble(),
+        deathsPerOneMillion: json["deathsPerOneMillion"].toDouble(),
         tests: json["tests"],
-        testsPerOneMillion: json["testsPerOneMillion"],
+        testsPerOneMillion: json["testsPerOneMillion"].toDouble(),
         population: json["population"],
         continent: json["continent"],
-        oneCasePerPeople: json["oneCasePerPeople"],
-        oneDeathPerPeople: json["oneDeathPerPeople"],
-        oneTestPerPeople: json["oneTestPerPeople"],
+        oneCasePerPeople: json["oneCasePerPeople"].toDouble(),
+        oneDeathPerPeople: json["oneDeathPerPeople"].toDouble(),
+        oneTestPerPeople: json["oneTestPerPeople"].toDouble(),
         activePerOneMillion: json["activePerOneMillion"].toDouble(),
         recoveredPerOneMillion: json["recoveredPerOneMillion"].toDouble(),
-        criticalPerOneMillion: json["criticalPerOneMillion"],
+        criticalPerOneMillion: json["criticalPerOneMillion"].toDouble(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -127,16 +127,16 @@ class CountryInfo {
   int id;
   String iso2;
   String iso3;
-  int lat;
-  int long;
+  double lat;
+  double long;
   String flag;
 
   factory CountryInfo.fromJson(Map<String, dynamic> json) => CountryInfo(
         id: json["_id"],
         iso2: json["iso2"],
         iso3: json["iso3"],
-        lat: json["lat"],
-        long: json["long"],
+        lat: double.parse(json["lat"].toString()),
+        long: double.parse(json["long"].toString()),
         flag: json["flag"],
       );
 

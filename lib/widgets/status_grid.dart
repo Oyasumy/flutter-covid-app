@@ -23,6 +23,7 @@ class _StatusGridState extends State<StatusGrid> {
         ? widget.vietNamCase != null
             ? NumberFormat.compact()
                 .format(double.parse(widget?.vietNamCase?.cases.toString()))
+                .toString()
             : "Loading"
         : widget.worldCase != null
             ? NumberFormat.compact()
@@ -33,24 +34,29 @@ class _StatusGridState extends State<StatusGrid> {
         ? widget.vietNamCase != null
             ? NumberFormat.compact()
                 .format(double.parse(widget?.vietNamCase?.deaths.toString()))
+                .toString()
             : "Loading"
         : widget.worldCase != null
             ? NumberFormat.compact()
                 .format(double.parse(widget?.worldCase?.detailCases?.dead))
+                .toString()
             : "Loading";
     var recovered = widget?.index == 0
         ? widget.vietNamCase != null
             ? NumberFormat.compact()
                 .format(double.parse(widget?.vietNamCase?.recovered.toString()))
+                .toString()
             : "loading"
         : widget.worldCase != null
             ? NumberFormat.compact()
                 .format(double.parse(widget?.worldCase?.detailCases?.recovered))
+                .toString()
             : "Loading";
     var active = widget?.index == 0
         ? widget.vietNamCase != null
             ? NumberFormat.compact()
                 .format(double.parse(widget?.vietNamCase?.active.toString()))
+                .toString()
             : "Loading"
         : widget.worldCase != null
             ? NumberFormat.compact().format(double.parse(

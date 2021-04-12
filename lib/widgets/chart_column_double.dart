@@ -1,14 +1,15 @@
+import 'dart:math';
+
+import 'package:covid_app/Modal/Country.dart';
 import 'package:covid_app/config/styles.dart';
 import 'package:covid_app/data/data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class ChartColumnDouble extends StatefulWidget {
-  @override
-  _CountriesScreenState createState() => _CountriesScreenState();
-}
+class ChartColumnDouble extends StatelessWidget {
+  final Country listCase;
+  ChartColumnDouble(this.listCase);
 
-class _CountriesScreenState extends State<ChartColumnDouble> {
   final Color leftBarColor = const Color(0xff53fdd7);
   final Color rightBarColor = const Color(0xffff5182);
   final double width = 7;
@@ -16,12 +17,23 @@ class _CountriesScreenState extends State<ChartColumnDouble> {
   List<BarChartGroupData> rawBarGroups;
   List<BarChartGroupData> showingBarGroups;
 
-  @override
   void initState() {
-    super.initState();
-    final barGroup1 = makeGroupData(0, 5, 12);
-    final barGroup2 = makeGroupData(1, 16, 12);
-    final barGroup3 = makeGroupData(2, 18, 5);
+    // super.initState();
+    print('init $listCase');
+    // var listCase = widget.listCase;
+
+    final barGroup1 = makeGroupData(
+        0,
+        listCase != null ? listCase.todayCases.toDouble() : 5,
+        listCase != null ? listCase.cases.toDouble() : 5);
+    final barGroup2 = makeGroupData(
+        1,
+        listCase != null ? listCase.todayDeaths.toDouble() : 5,
+        listCase != null ? listCase.deaths.toDouble() : 5);
+    final barGroup3 = makeGroupData(
+        2,
+        listCase != null ? listCase.todayRecovered.toDouble() : 5,
+        listCase != null ? listCase.recovered.toDouble() : 5);
     // final barGroup4 = makeGroupData(3, 20, 16);
     // final barGroup5 = makeGroupData(4, 17, 6);
     // final barGroup6 = makeGroupData(5, 19, 1.5);
@@ -59,8 +71,13 @@ class _CountriesScreenState extends State<ChartColumnDouble> {
 
   @override
   Widget build(BuildContext context) {
+    initState();
+    var maxVlaue = listCase != null
+        ? max(listCase.recovered.toDouble(),
+            max(listCase.deaths.toDouble(), listCase.cases.toDouble()))
+        : 9999999;
     return BarChart(BarChartData(
-      maxY: 70,
+      maxY: maxVlaue.toDouble(),
       alignment: BarChartAlignment.spaceAround,
       barTouchData: BarTouchData(enabled: false),
       titlesData: FlTitlesData(
@@ -97,11 +114,12 @@ class _CountriesScreenState extends State<ChartColumnDouble> {
               showTitles: true,
               getTextStyles: (v) => Styles.chartLabelTextStyle,
               getTitles: (value) {
+                print(' vl $value');
                 if (value == 0) {
                   return "0";
                 }
-                if (value % 10 == 0) {
-                  return '${value ~/ 10 * 10}K';
+                if (value % 10000 == 0) {
+                  return '${value ~/ 10000 * 10000}K';
                 }
                 return "";
               }),

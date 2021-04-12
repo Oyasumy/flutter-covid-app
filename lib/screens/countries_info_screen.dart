@@ -3,6 +3,7 @@ import 'package:covid_app/config/palette.dart';
 import 'package:covid_app/service/country_service.dart';
 import 'package:covid_app/widgets/custome_app_bar.dart';
 import 'package:covid_app/widgets/widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CountriesScreen extends StatefulWidget {
@@ -42,19 +43,20 @@ class _CountriesScreenState extends State<CountriesScreen> {
       body: CustomScrollView(
         physics: ClampingScrollPhysics(),
         slivers: [
-          _buildHead(),
+          _buildHead(listCaseCountry.length > 0 ? listCaseCountry[0] : null),
           _buildSizeBox20(),
           _buildConten(
               height, listCaseCountry.length > 0 ? listCaseCountry[0] : null),
           _buildSizeBox20(),
-          _buildChart(width),
+          _buildChart(
+              width, listCaseCountry.length > 0 ? listCaseCountry[0] : null),
           _buildSizeBox20(),
         ],
       ),
     );
   }
 
-  SliverToBoxAdapter _buildHead() {
+  SliverToBoxAdapter _buildHead(Country listCases) {
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -63,10 +65,12 @@ class _CountriesScreenState extends State<CountriesScreen> {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                "https://disease.sh/assets/img/flags/vn.png",
-                width: 100,
-              ),
+              child: listCases != null
+                  ? Image.network(
+                      listCases.countryInfo.flag,
+                      width: 100,
+                    )
+                  : null,
             ),
             CountriesDropdown(
                 // countries: ['CN', 'FR', 'IN', 'IT', 'UK', 'USA', "VI"],
@@ -101,7 +105,11 @@ SliverToBoxAdapter _buildConten(height, Country listCaes) {
             children: <Widget>[
               BuildStateCard(
                   "Population",
-                  listCaes == null ? "Loading" : listCaes.population.toString(),
+                  listCaes == null
+                      ? "Loading"
+                      : NumberFormat.compact()
+                          .format(listCaes.population.toDouble())
+                          .toString(),
                   Colors.blue),
             ],
           )),
@@ -110,11 +118,19 @@ SliverToBoxAdapter _buildConten(height, Country listCaes) {
             children: <Widget>[
               BuildStateCard(
                   "Active",
-                  listCaes == null ? "Loading" : listCaes.active.toString(),
+                  listCaes == null
+                      ? "Loading"
+                      : NumberFormat.compact()
+                          .format(listCaes.active.toDouble())
+                          .toString(),
                   Colors.green),
               BuildStateCard(
                   "Critical",
-                  listCaes == null ? "Loading" : listCaes.critical.toString(),
+                  listCaes == null
+                      ? "Loading"
+                      : NumberFormat.compact()
+                          .format(listCaes.critical.toDouble())
+                          .toString(),
                   Colors.orange),
             ],
           )),
@@ -124,7 +140,7 @@ SliverToBoxAdapter _buildConten(height, Country listCaes) {
   );
 }
 
-SliverToBoxAdapter _buildChart(width) {
+SliverToBoxAdapter _buildChart(width, Country listCase) {
   return SliverToBoxAdapter(
     child: Center(
       child: Container(
@@ -143,7 +159,7 @@ SliverToBoxAdapter _buildChart(width) {
             SizedBox(
               height: 20,
             ),
-            ChartColumnDouble()
+            new ChartColumnDouble(listCase)
           ],
         ),
       ),
