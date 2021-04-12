@@ -1,0 +1,17 @@
+{
+  "home-title": "Are you feeling sick?",
+  "home-subtitle": "If you feel sick with any COVID 21 symptoms, please call us immediately for help",
+  "home-button-text": "Call Now",
+  "home-title-prevention": "Prevention Tips",
+  "home-title-test": "Do your own test",
+  "home-subtitle-test": "Follow the instruction\nto do you own test",
+  "home-child-title-1-prevention": "Avoid close\nContact",
+  "home-child-title-2-prevention": "Clean your\nhands Often",
+  "home-child-title-3-prevention": "Wear a\nface Mask",
+  "status-title": "Statics",
+  "status-total": "Total Case",
+  "status-dead": "Dead",
+  "status-recovered": "Recovered",
+  "status-active": "Active",
+  "status-critical": "Critical"
+}

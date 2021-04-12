@@ -1,0 +1,17 @@
+{
+  "home-title": "Bạn cảm thấy không khoẻ ?",
+  "home-subtitle": "Nếu bạn cảm thấy có đấu hiệu của COVID, hãy liên hệ với chúng tôi ngay lập tức",
+  "home-button-text": "Gọi ngay",
+  "home-title-prevention": "Biện pháp",
+  "home-title-test": "Bạn đã làm kiểm tra dấu hiện",
+  "home-subtitle-test": "Làm theo hướng dẫn dưới đây\nđể thực hiện quá trình",
+  "home-child-title-1-prevention": "Tránh tiếp\nxúc gần",
+  "home-child-title-2-prevention": "Rửa tay\nthường xuyên",
+  "home-child-title-3-prevention": "Đeo\nKhẩu trang",
+  "status-title": "Trạng thái",
+  "status-total": "Tổng ca",
+  "status-dead": "Chết",
+  "status-recovered": "Hồi phục",
+  "status-active": "Khỏi",
+  "status-critical": "Nguy hiểm"
+}
