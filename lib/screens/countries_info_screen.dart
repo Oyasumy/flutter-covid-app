@@ -74,7 +74,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
             ),
             CountriesDropdown(
                 // countries: ['CN', 'FR', 'IN', 'IT', 'UK', 'USA', "VI"],
-                countries: ['USA', "VN"],
+                countries: ['USA', "VN", "FR", "IN", "IT", "UK"],
                 country: _country,
                 onchange: (value) => setState(() {
                       _country = value;

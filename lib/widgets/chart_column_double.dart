@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:covid_app/Modal/Country.dart';
 import 'package:covid_app/config/styles.dart';
 import 'package:covid_app/data/data.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -79,7 +80,7 @@ class ChartColumnDouble extends StatelessWidget {
     return BarChart(BarChartData(
       maxY: maxVlaue.toDouble(),
       alignment: BarChartAlignment.spaceAround,
-      barTouchData: BarTouchData(enabled: false),
+      barTouchData: BarTouchData(enabled: true),
       titlesData: FlTitlesData(
           show: true,
           bottomTitles: SideTitles(
@@ -95,16 +96,16 @@ class ChartColumnDouble extends StatelessWidget {
                     return "TD Deaths\nDeaths";
                   case 2:
                     return "TD Recovered\nRecovered";
-                  case 3:
-                    return "May 27";
-                  case 4:
-                    return "May 28";
-                  case 5:
-                    return "May 29";
-                  case 6:
-                    return "May 30";
-                  case 7:
-                    return "May 31";
+                  // case 3:
+                  //   return "May 27";
+                  // case 4:
+                  //   return "May 28";
+                  // case 5:
+                  //   return "May 29";
+                  // case 6:
+                  //   return "May 30";
+                  // case 7:
+                  //   return "May 31";
                   default:
                     return "q";
                 }
@@ -114,12 +115,27 @@ class ChartColumnDouble extends StatelessWidget {
               showTitles: true,
               getTextStyles: (v) => Styles.chartLabelTextStyle,
               getTitles: (value) {
-                print(' vl $value');
+                // print(' vl $value');
+                var step = 0;
+                if (value >= 100 && value < 1000) {
+                  step = 100;
+                } else if (value >= 1000 && value < 10000) {
+                  step = 1000;
+                } else if (value >= 10000 && value < 100000) {
+                  step = 10000;
+                } else if (value >= 100000 && value < 1000000) {
+                  step = 100000;
+                } else if (value >= 1000000 && value <= 9999999) {
+                  step = 1000000;
+                } else if (value >= 10000000) {
+                  step = 10000000;
+                }
+                print('label $step');
                 if (value == 0) {
                   return "0";
                 }
-                if (value % 10000 == 0) {
-                  return '${value ~/ 10000 * 10000}K';
+                if (value % step == 0 && value % (step * 2) == 0) {
+                  return NumberFormat.compact().format(value).toString();
                 }
                 return "";
               }),
