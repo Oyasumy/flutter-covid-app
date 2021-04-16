@@ -71,9 +71,9 @@ class _MapGoogleScreenState extends State<MapGoogleScreen> {
   void setCustomeMarker() async {
     customIcon1 = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(
-          size: Size(24, 24),
-        ),
-        "assets/chip.png");
+            // size: Size(24, 24),
+            ),
+        "assets/images/chip.png");
     setState(() {
       if (loading == false) {
         markers = showMarker(customIcon1, _provinces);
@@ -105,7 +105,7 @@ class _MapGoogleScreenState extends State<MapGoogleScreen> {
         body: GoogleMap(
             initialCameraPosition: _initialCameraPosition,
             myLocationButtonEnabled: false,
-            zoomControlsEnabled: true,
+            zoomControlsEnabled: false,
             zoomGesturesEnabled: true,
             indoorViewEnabled: false,
             tiltGesturesEnabled: false,

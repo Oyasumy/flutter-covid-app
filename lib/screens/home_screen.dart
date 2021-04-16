@@ -175,7 +175,7 @@ SliverToBoxAdapter _buildYourOwnTest(double screenHeight) {
     child: Container(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       padding: EdgeInsets.all(20),
-      height: screenHeight * 0.17,
+      // height: screenHeight * 0.2,
       decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: [Color(0xffad9fe4), Palette.primaryColor])),
@@ -184,13 +184,18 @@ SliverToBoxAdapter _buildYourOwnTest(double screenHeight) {
         children: <Widget>[
           Image.asset(
             'assets/images/own_test.png',
+            height: 100,
+            // color: Colors.amber,
           ),
           Container(
             // color: Colors.orange,
-            width: screenHeight * .25,
+            // width: '100%',
+            constraints:
+                BoxConstraints(minWidth: 100, maxWidth: screenHeight * .2),
+            // decoration: BoxDecoration(color: Colors.blue),
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Text(
                   'home-title-test'.tr().toString(),
@@ -207,6 +212,7 @@ SliverToBoxAdapter _buildYourOwnTest(double screenHeight) {
                   'home-subtitle-test'.tr().toString(),
                   style: TextStyle(color: Colors.white, fontSize: 14),
                   textAlign: TextAlign.center,
+                  maxLines: 3,
                 )
               ],
             ),

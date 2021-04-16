@@ -104,7 +104,7 @@ SliverToBoxAdapter _buildConten(height, Country listCaes) {
               child: Row(
             children: <Widget>[
               BuildStateCard(
-                  "Population",
+                  'country-population'.tr().toString(),
                   listCaes == null
                       ? "Loading"
                       : NumberFormat.compact()
@@ -117,7 +117,7 @@ SliverToBoxAdapter _buildConten(height, Country listCaes) {
               child: Row(
             children: <Widget>[
               BuildStateCard(
-                  "Active",
+                  "country-active".tr().toString(),
                   listCaes == null
                       ? "Loading"
                       : NumberFormat.compact()
@@ -125,7 +125,7 @@ SliverToBoxAdapter _buildConten(height, Country listCaes) {
                           .toString(),
                   Colors.green),
               BuildStateCard(
-                  "Critical",
+                  "country-critical".tr().toString(),
                   listCaes == null
                       ? "Loading"
                       : NumberFormat.compact()
@@ -146,14 +146,14 @@ SliverToBoxAdapter _buildChart(width, Country listCase) {
       child: Container(
         padding: EdgeInsets.all(20),
         alignment: Alignment.centerLeft,
-        height: 350,
+        // height: 350,
         width: width * .9,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), color: Colors.white),
         child: Column(
           children: <Widget>[
             Text(
-              'Daily New Cases',
+              'country-title'.tr().toString(),
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             SizedBox(

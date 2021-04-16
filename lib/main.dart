@@ -1,4 +1,5 @@
 import 'package:covid_app/screens/screens.dart';
+import 'package:covid_app/screens/splash_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_localizations/flutter_localizations.dart';
@@ -38,7 +39,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: BottomNavScreen(),
+      home: SplashScreen(),
+      routes: {
+        "/home": (context) => BottomNavScreen(),
+        "/splash": (context) => SplashScreen()
+      },
     );
   }
 }

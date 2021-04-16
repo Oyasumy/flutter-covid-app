@@ -13,5 +13,9 @@
   "status-dead": "Dead",
   "status-recovered": "Recovered",
   "status-active": "Active",
-  "status-critical": "Critical"
+  "status-critical": "Critical",
+  "country-population": "Population",
+  "country-active": "Active",
+  "country-critical": "Critical",
+  "country-title": "Daily New Cases"
 }

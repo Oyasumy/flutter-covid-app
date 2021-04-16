@@ -13,5 +13,9 @@
   "status-dead": "Chết",
   "status-recovered": "Hồi phục",
   "status-active": "Khỏi",
-  "status-critical": "Nguy hiểm"
+  "status-critical": "Nguy hiểm",
+  "country-population": "Dân số",
+  "country-active": "Khỏi bệnh",
+  "country-critical": "Nguy hiểm",
+  "country-title": "Ca nhiễm hằng ngày"
 }
