@@ -1,5 +1,5 @@
+import 'package:covid_app/Modal/USACase.dart';
 import 'package:covid_app/Modal/VietNamCase.dart';
-import 'package:covid_app/Modal/WorldCase.dart';
 import 'package:covid_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -7,9 +7,9 @@ import 'package:easy_localization/easy_localization.dart';
 class StatusGrid extends StatefulWidget {
   final int index;
   final VietNamCase vietNamCase;
-  final WorldCase worldCase;
+  final UsaCase usaCase;
 
-  StatusGrid({Key key, this.index, this.vietNamCase, this.worldCase})
+  StatusGrid({Key key, this.index, this.vietNamCase, this.usaCase})
       : super(key: key);
 
   @override
@@ -25,9 +25,9 @@ class _StatusGridState extends State<StatusGrid> {
                 .format(double.parse(widget?.vietNamCase?.cases.toString()))
                 .toString()
             : "Loading"
-        : widget.worldCase != null
+        : widget.usaCase != null
             ? NumberFormat.compact()
-                .format(double.parse(widget?.worldCase?.detailCases?.total))
+                .format(double.parse(widget?.usaCase?.cases.toString()))
                 .toString()
             : "Loading";
     var dead = widget?.index == 0
@@ -36,9 +36,9 @@ class _StatusGridState extends State<StatusGrid> {
                 .format(double.parse(widget?.vietNamCase?.deaths.toString()))
                 .toString()
             : "Loading"
-        : widget.worldCase != null
+        : widget.usaCase != null
             ? NumberFormat.compact()
-                .format(double.parse(widget?.worldCase?.detailCases?.dead))
+                .format(double.parse(widget?.usaCase?.deaths.toString()))
                 .toString()
             : "Loading";
     var recovered = widget?.index == 0
@@ -47,9 +47,9 @@ class _StatusGridState extends State<StatusGrid> {
                 .format(double.parse(widget?.vietNamCase?.recovered.toString()))
                 .toString()
             : "loading"
-        : widget.worldCase != null
+        : widget.usaCase != null
             ? NumberFormat.compact()
-                .format(double.parse(widget?.worldCase?.detailCases?.recovered))
+                .format(double.parse(widget?.usaCase?.recovered.toString()))
                 .toString()
             : "Loading";
     var active = widget?.index == 0
@@ -58,18 +58,18 @@ class _StatusGridState extends State<StatusGrid> {
                 .format(double.parse(widget?.vietNamCase?.active.toString()))
                 .toString()
             : "Loading"
-        : widget.worldCase != null
-            ? NumberFormat.compact().format(double.parse(
-                widget?.worldCase?.activeCases?.currentlyInfectedPatients))
+        : widget.usaCase != null
+            ? NumberFormat.compact()
+                .format(double.parse(widget?.usaCase?.active.toString()))
             : "Loading";
     var critial = widget?.index == 0
         ? widget.vietNamCase != null
             ? NumberFormat.compact()
                 .format(double.parse(widget?.vietNamCase?.critical.toString()))
             : "Loading"
-        : widget.worldCase != null
-            ? NumberFormat.compact().format(
-                double.parse(widget?.worldCase?.activeCases?.serious[0]))
+        : widget.usaCase != null
+            ? NumberFormat.compact()
+                .format(double.parse(widget?.usaCase?.critical.toString()))
             : "Loading";
 
     return Container(

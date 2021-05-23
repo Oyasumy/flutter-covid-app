@@ -1,8 +1,10 @@
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+import 'package:covid_app/Modal/USACase.dart';
 import 'package:covid_app/Modal/VietNamCase.dart';
 import 'package:covid_app/Modal/WorldCase.dart';
 import 'package:covid_app/config/palette.dart';
 import 'package:covid_app/config/styles.dart';
+import 'package:covid_app/service/usa_case.dart';
 import 'package:covid_app/service/viet_nam_case.dart';
 import 'package:covid_app/service/world-case.dart';
 import 'package:covid_app/widgets/custome_app_bar.dart';
@@ -16,7 +18,7 @@ class StatusScreen extends StatefulWidget {
 }
 
 class _StatusScreenState extends State<StatusScreen> {
-  List<WorldCase> listCaseWorld = [];
+  List<UsaCase> listCaseUSA = [];
   List<VietNamCase> listCaseVietNam = [];
 
   int _initTab = 0;
@@ -30,15 +32,15 @@ class _StatusScreenState extends State<StatusScreen> {
 
   callApiLoadData() async {
     if (_initTab == 0) {
-      VietNamCaseService.getListCase().then((value) {
+      await VietNamCaseService.getListCase().then((value) {
         setState(() {
           listCaseVietNam = value;
         });
       });
     } else {
-      WorldCaseService.getWorldCase().then((value) {
+      await USACaseService.getListCase().then((value) {
         setState(() {
-          listCaseWorld = value;
+          listCaseUSA = value;
         });
       });
     }
@@ -58,7 +60,7 @@ class _StatusScreenState extends State<StatusScreen> {
           _buildStatusTabBar(
               _initTab,
               listCaseVietNam.length > 0 ? listCaseVietNam[0] : null,
-              listCaseWorld.length > 0 ? listCaseWorld[0] : null)
+              listCaseUSA.length > 0 ? listCaseUSA[0] : null)
         ],
       ),
     );
@@ -93,7 +95,7 @@ class _StatusScreenState extends State<StatusScreen> {
                   indicatorHeight: 40),
               labelStyle: Styles.TabTextStyle,
               labelColor: Colors.black,
-              tabs: <Widget>[Text('Viet Nam'), Text('World')],
+              tabs: <Widget>[Text('Viet Nam'), Text('USA')],
               onTap: (index) {
                 setState(() {
                   _initTab = index;
@@ -107,12 +109,12 @@ class _StatusScreenState extends State<StatusScreen> {
 }
 
 SliverPadding _buildStatusTabBar(
-    int index, VietNamCase vietNamCase, WorldCase worldCase) {
+    int index, VietNamCase vietNamCase, UsaCase usaCase) {
   return SliverPadding(
     padding: EdgeInsets.all(20),
     sliver: SliverToBoxAdapter(
-      child: StatusGrid(
-          index: index, vietNamCase: vietNamCase, worldCase: worldCase),
+      child:
+          StatusGrid(index: index, vietNamCase: vietNamCase, usaCase: usaCase),
     ),
   );
 }
